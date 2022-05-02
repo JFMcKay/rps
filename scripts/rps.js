@@ -136,4 +136,3 @@ function displayChoice(choice) {
       }
 
  }
-// What if the user enters something other than rock, paper, or scissors into the prompt? Figure out how to handle that as well.
