@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="scripts/rps.js" defer></script>
 </head>
 <body>
     <header>
         <h1>ROCK PAPER SCISSORS</h1>
         <h2 id="message">Are you challenging me!?</h2>
+        
     </header>
     <main>
-        <h1 id="yourChoice"></h1>
-        <h1 id="compChoice"></h1>
+        <section id="playerSect">
+            <h2>Please choose, The Rock, Toilet Paper, or Super Generic Scissors</h2>
+            <div id="rock" class="play"><img src="./images/rock.jpg" alt="The Rock"></div>
+            <div id="paper" class="play"><img src="./images/paper.jpg" alt="TP"></div>
+            <div id="scissors" class="play"><img src="./images/scissors.jpg" alt="scissors"></div>
+        </section>
+        <section id="compSect">
+            <div class="comp"><img src="./images/rock.jpg" alt="The Rock"></div>
+            <div class="comp"><img src="./images/paper.jpg" alt="TP"></div>
+            <div class="comp"><img src="./images/scissors.jpg" alt="scissors"></div>
+        </section>
     </main>
     
 </body>

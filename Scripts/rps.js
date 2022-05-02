@@ -1,84 +1,122 @@
 // Begin by prompting the user for their choice.
-var playerChoice = window.prompt("Make a choice:  r = rock, p = paper, s = scissors").toLowerCase();
-console.log(playerChoice);
-while (!picked) {
-    var picked = false;
-    if (playerChoice == 'r') {
-        picked = true;
-    } else if (playerChoice == 's') {
-        picked = true;
-    } else if (playerChoice == 'p') {
-        picked = true;
-    } else {
-        playerChoice = window.prompt("Please make a choice: r = rock, p = paper, s = scissors").toLowerCase();
+var pChoice = 'r';
+//Highlight location
+playChoice();
+
+function startGame() {    
+    
+    var compChoice = Math.floor(Math.random() * Math.floor(3));
+    console.log(pChoice);
+    computeChoice(compChoice);
+
+    var result = pChoice + letterReturn(compChoice);
+    console.log("the result combined is " + result)
+    whoWon(result);
+    
+}
+// Get user selection based on which div they click.
+function playChoice() {
+    var pSect = document.getElementById('playerSect').querySelectorAll('.play');
+    rock.addEventListener('mouseup',  function() {
+        console.log('rock')
+        pChoice = 'r';
+        pSect[0].className = 'play highlight';
+        pSect[2].className = 'play';
+        pSect[1].className = 'play';
+        playAgain();
+        startGame();
+    });
+    paper.addEventListener('mouseup',  function() {
+        console.log('paper')
+        pChoice = 'p';
+        pSect[1].className = 'play highlight';
+        pSect[2].className = 'play';
+        pSect[0].className = 'play';
+        playAgain();
+        startGame();
+    });
+    scissors.addEventListener('mouseup', function() {
+        console.log('scissors')
+        pChoice = 's';
+        pSect[2].className = 'play highlight';
+        pSect[1].className = 'play';
+        pSect[0].className = 'play';
+        playAgain();
+        startGame();
+    });
+    
+}
+
+// Function to call to get for computer choice
+function computeChoice(cChoice) {
+
+    console.log('This is the choice before ' + cChoice);
+    var cSect = document.getElementById('compSect').querySelectorAll('.comp');
+    console.log('This is the cSect Choice ' + cSect[cChoice]);
+    // Sets the highlight
+    cSect[cChoice].className = 'comp highlight';
+
+    console.log('This is the new cChoice ' + cChoice);
+}
+
+function letterReturn(chosenNum) {
+    switch(chosenNum) {
+        case 0:
+            return "r";           
+
+        case 1:
+            return "p";
+
+        case 2:
+            return "s";
+
     }
 }
- 
-// Create the computer’s choice. This will be generated similarly to the coin flip that you did last week. Remember though, rather than 2 options, there will be 3 here.
-var compChoice = Math.floor(Math.random() * Math.floor(3));
-console.log(compChoice);
 
-
-// Depending on what the numeric value of the computer’s choice is, reset it to a string value of rock, paper, or scissors instead.
-switch(compChoice) {
-    case 0:
-        compChoice = "r";
-        break;
-    case 1:
-        compChoice = "p";
-        break;
-    case 2:
-        compChoice = "s";
-        break;
-}
-console.log(compChoice);
-
-// Create a conditional that checks the user’s choice in relation to the computer’s choice. Once a winner is defined, display a message within an alert box indicating who the winner is.
-//Going to concatinate the 2 and compare them in a switch statement to determine whether its a win, loss or draw
-var result = playerChoice + compChoice;
-document.getElementById('yourChoice').innerHTML = 'You picked ' + displayChoice(playerChoice); 
-document.getElementById('compChoice').innerHTML = 'The computer picked ' + displayChoice(compChoice); 
-console.log(result);
-switch(result) {
-    //player wins
-    case 'rs':
-        console.log('PLAYER WINS');
-        document.getElementById('message').innerHTML = "YOU WON!!!";
-        break;
-    case 'pr':
-        console.log('PLAYER WINS');
-        document.getElementById('message').innerHTML = "YOU WON!!!";
-        break;
-    case 'sp':
-        console.log('PLAYER WINS');
-        document.getElementById('message').innerHTML = "YOU WON!!!";
-        break;
-    //computer wins
-    case 'sr':
-        console.log('COMP WINS');
-        document.getElementById('message').innerHTML = "COMPUTER WON";
-        break;
-    case 'rp':
-        console.log('COMP WINS');
-        document.getElementById('message').innerHTML = "COMPUTER WON";
-        break;
-    case 'ps':
-        console.log('COMP WINS');
-        document.getElementById('message').innerHTML = "COMPUTER WON";
-        break;
-    //this is a draw
-    case 'pp':
-        console.log('DRAWWWW');
-        document.getElementById('message').innerHTML = "IT'S A DRAW";
-        break;
-    case 'ss':
-        console.log('DRAWWWW');
-        document.getElementById('message').innerHTML = "IT'S A DRAW";
-        break;
-    case 'rr':
-        console.log('DRAWWWW');
-        document.getElementById('message').innerHTML = "IT'S A DRAW";
-        break;
+function whoWon(r) {
+    console.log('This is the resulting' + r);
+    var clickTPA = "Pick to play again!"
+    switch(r) {
+        //player wins
+        case 'rs':
+            console.log('PLAYER WINS');
+            document.getElementById('message').innerHTML = "YOU WON!!! " + clickTPA;
+            break;
+        case 'pr':
+            console.log('PLAYER WINS');
+            document.getElementById('message').innerHTML = "YOU WON!!! " + clickTPA;
+            break;
+        case 'sp':
+            console.log('PLAYER WINS');
+            document.getElementById('message').innerHTML = "YOU WON!!! " + clickTPA;
+            break;
+        //computer wins
+        case 'sr':
+            console.log('COMP WINS');
+            document.getElementById('message').innerHTML = "COMPUTER WON " + clickTPA;
+            break;
+        case 'rp':
+            console.log('COMP WINS');
+            document.getElementById('message').innerHTML = "COMPUTER WON " + clickTPA;
+            break;
+        case 'ps':
+            console.log('COMP WINS');
+            document.getElementById('message').innerHTML = "COMPUTER WON " + clickTPA;
+            break;
+        //this is a draw
+        case 'pp':
+            console.log('DRAWWWW');
+            document.getElementById('message').innerHTML = "IT'S A DRAW " + clickTPA;
+            break;
+        case 'ss':
+            console.log('DRAWWWW');
+            document.getElementById('message').innerHTML = "IT'S A DRAW " + clickTPA;
+            break;
+        case 'rr':
+            console.log('DRAWWWW');
+            document.getElementById('message').innerHTML = "IT'S A DRAW " + clickTPA;
+            break;
+    }
 }
 function displayChoice(choice) {
     switch(choice) {
@@ -89,5 +127,13 @@ function displayChoice(choice) {
         case 's':
             return 'scissor';
     }
-}
+ }
+
+ function playAgain() {
+    var cSect = document.getElementById('compSect').querySelectorAll('.comp');
+    for (var i = 0; i < cSect.length; i++) {
+        cSect[i].className = 'comp';
+      }
+
+ }
 // What if the user enters something other than rock, paper, or scissors into the prompt? Figure out how to handle that as well.
